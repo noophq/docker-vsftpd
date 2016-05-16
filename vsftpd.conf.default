@@ -1,0 +1,33 @@
+listen=YES
+local_enable=YES
+write_enable=YES
+local_umask=022
+local_root=/var/lib/ftp/$USER
+chroot_local_user=YES
+secure_chroot_dir=/var/run/vsftpd
+allow_writeable_chroot=YES
+hide_ids=YES
+pam_service_name=vsftpd
+user_sub_token=$USER
+
+# Avoid child died error
+seccomp_sandbox=NO
+
+# Virtual user settings
+guest_enable=YES
+guest_username=ftp
+user_config_dir=/etc/vsftpd/users
+
+# No anonymous users
+anonymous_enable=NO
+anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+anon_other_write_enable=NO
+
+# Logging Options
+dual_log_enable=NO
+log_ftp_protocol=NO
+syslog_enable=NO
+vsftpd_log_file=/var/log/vsftpd.log
+xferlog_enable=YES
+xferlog_std_format=NO
